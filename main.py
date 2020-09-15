@@ -1,6 +1,7 @@
 from Models import Movie, Series
 from DataBase import Data_Base
 import random
+from datetime import date
 
 def get_movies(data_base):
     movies = []
@@ -57,10 +58,6 @@ def top_titles(how_many, data_base, content_type = ''):
             result.append(by_popularity[counter])
         return result
 
-updated_db = generate_views(10, Data_Base)
-print(top_titles(10,updated_db))
-print(top_titles(5,updated_db, "movies"))
-print(top_titles(5,updated_db, "series"))
 """
 movies = get_movies(Data_Base)
 for movie in movies:
@@ -72,4 +69,15 @@ for serie in series:
 
 print(search("The Shawshank Redemption",Data_Base))
 print(search("ABC",Data_Base))
+
+updated_db = generate_views(10, Data_Base)
+print(top_titles(10,updated_db))
+print(top_titles(5,updated_db, "movies"))
+print(top_titles(5,updated_db, "series"))
 """
+if __name__ == "__main__":
+    data_base = Data_Base
+    updated_db = generate_views(10, data_base)
+    today = date.today()
+    print(f'Najpopularniejsze filmy i seriale dnia {today}:')
+    print(top_titles(3, updated_db))
